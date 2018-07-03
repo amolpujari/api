@@ -1,0 +1,44 @@
+{
+  "resource": "Resources",
+  "resource_explanation": null,
+  "http_method": "GET",
+  "route": "/api/v1/resources",
+  "description": "GET /resources",
+  "explanation": null,
+  "parameters": [
+
+  ],
+  "response_fields": [
+
+  ],
+  "requests": [
+    {
+      "request_method": "GET",
+      "request_path": "/api/v1/resources",
+      "request_body": null,
+      "request_headers": {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Host": "example.org",
+        "Cookie": ""
+      },
+      "request_query_parameters": {
+      },
+      "request_content_type": "application/json",
+      "response_status": 200,
+      "response_status_text": "OK",
+      "response_body": "{\"total\":0,\"count\":0,\"page\":1,\"per_page\":10,\"order_by\":\"id DESC\",\"data\":[],\"status\":200}",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Vary": "Accept-Encoding",
+        "ETag": "W/\"3181c50a3878626ded5e4a1874e8d796\"",
+        "Cache-Control": "max-age=0, private, must-revalidate",
+        "X-Request-Id": "14dccb46-a046-461d-8874-2d275d9185b5",
+        "X-Runtime": "0.007718",
+        "Content-Length": "88"
+      },
+      "response_content_type": "application/json; charset=utf-8",
+      "curl": null
+    }
+  ]
+}

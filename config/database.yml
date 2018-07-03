@@ -1,0 +1,25 @@
+defaults: &defaults
+  adapter: mysql2
+  pool: 5
+  timeout: 5000
+  host: 127.0.0.1
+  encoding: utf8
+
+development:
+  <<: *defaults
+  database: api_dev
+  username: <%= Rails.application.secrets[:database][:username] %>
+  password: <%= Rails.application.secrets[:database][:password] %>
+
+test:
+  <<: *defaults
+  database: api_test
+  username: <%= Rails.application.secrets[:database][:username] %>
+  password: <%= Rails.application.secrets[:database][:password] %>
+
+production:
+  <<: *defaults
+  host: <%= Rails.application.secrets[:database][:host] %>
+  username: <%= Rails.application.secrets[:database][:username] %>
+  database: <%= Rails.application.secrets[:database][:name] %>
+  password: <%= Rails.application.secrets[:database][:password] %>

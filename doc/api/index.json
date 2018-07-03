@@ -1,0 +1,17 @@
+{
+  "resources": [
+    {
+      "name": "Resources",
+      "explanation": null,
+      "examples": [
+        {
+          "description": "GET /resources",
+          "link": "resources/get_resources.json",
+          "groups": "all",
+          "route": "/api/v1/resources",
+          "method": "get"
+        }
+      ]
+    }
+  ]
+}
