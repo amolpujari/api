@@ -16,6 +16,10 @@ class Sequel::Model
   def self.permitted_columns
     @permitted_columns ||= []
   end
+
+  def save! *args
+    save *args
+  end
 end
 
 

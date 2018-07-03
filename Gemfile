@@ -8,12 +8,10 @@ gem 'mysql2', '0.5.1'
 gem 'sequel', '5.9.0'
 gem 'sequel-rails', '1.0.1'
 
+gem 'foreman'
 gem 'puma'
 gem 'sidekiq', '5.1.3'
-
 gem 'whenever', '0.10.0', :require => false
-gem 'foreman'
-
 
 group :development do
   gem "capistrano", "~> 3.8"
@@ -23,11 +21,17 @@ group :development do
 end
 
 group :development, :test do
-  gem 'spring'
-  gem 'pry-rails'
-  gem 'rspec-rails', '~> 3.5'
-  gem 'rspec_junit_formatter', '0.2.2'
-  gem 'rspec_api_documentation', '~> 5.1.0'
   gem 'apitome'
+  gem 'factory_bot_rails', '~> 4.0'
+  gem 'pry-rails'
+  gem 'pry-stack_explorer'
+  gem 'rspec-rails', '~> 3.5'
+  gem 'rspec_api_documentation', '~> 5.1.0'
+  gem 'rspec_junit_formatter', '0.2.2'
   gem 'simplecov', require: false
+  gem 'spring'
+end
+
+group :test do
+  gem 'database_cleaner'
 end
