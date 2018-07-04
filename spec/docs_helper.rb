@@ -1,4 +1,4 @@
-API_HOST = "ag.local.com:9001"
+API_HOST = "localhost:3000"
 
 require "rspec_api_documentation"
 require "rspec_api_documentation/dsl"
