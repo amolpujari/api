@@ -56,7 +56,9 @@ module Api::ResourceController
 
   def resource
     return if resource_id == 0
-    @resource ||= resource_class[resource_id]
+    @resource = resource_class[resource_id]
+    self.status = :not_found unless @resource
+    @resource
   end
 
   def resources
@@ -89,11 +91,12 @@ module Api::ResourceController
 
   def save_resource
     if @resource.save
+      self.status = :created
       @id = @resource.id
       @resource
 
     else
-      status = :bad
+      self.status = :bad
       envelope[:error] = {
         message: "#{action_name} #{resource_name} failed",
         errors: @resource.errors,
@@ -116,38 +119,10 @@ module Api::ResourceController
   end
 
   def destroy
-    head @resource.destroy ? :ok : :error
+    head resource&.destroy ? :ok : :internal_server_error
   end
 
   def resource_params
     params.require(resource_name).permit(resource_class&.permitted_columns || [])
-  end
-
-  def render_json data
-    gzip_response
-
-    if envelope.present?
-      @envelope[:data] = data
-      render json: @envelope, status: status
-
-    else
-      render json: data, status: status
-    end
-  end
-
-  def envelope
-    @envelope ||= {}
-  end
-
-  def gzip_response
-    #request.env['HTTP_ACCEPT_ENCODING'] = 'gzip'
-  end
-
-  def status
-    @status ||= :ok
-  end
-
-  def status= val
-    @status = envelope[:status] = val
   end
 end

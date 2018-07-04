@@ -21,10 +21,8 @@ RSpec.configure do |config|
 
   config.include FactoryBot::Syntax::Methods
 
-  config.around(:each) do |example|
-    DatabaseCleaner.cleaning do
-      example.run
-    end
+  config.after(:each) do
+    DatabaseCleaner.clean_with(:truncation)
   end
 
 

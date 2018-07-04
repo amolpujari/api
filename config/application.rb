@@ -28,6 +28,7 @@ module Api
     config.sequel.after_connect = proc do
       Sequel.default_timezone = :utc
       Sequel::Model.plugin :timestamps, update_on_create: true
+      Sequel::Model.plugin :active_model
     end
 
     config.active_job.queue_adapter = :sidekiq
