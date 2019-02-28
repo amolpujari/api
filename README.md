@@ -8,5 +8,3 @@ bundle exec rails server
 ````
 
 http://localhost:3000/api/docs
-
-![alt text](https://raw.githubusercontent.com/amolpujari/api/branch/master/example.png)
