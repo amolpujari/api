@@ -62,7 +62,28 @@ module Api::ResourceController
   end
 
   def resources
-    @resources ||= resource_class.dataset.order(order_by).paginate(page, per_page)
+    @resources = resource_class
+    @resources = @resources.includes(includables)
+    @resources = @resources.order order_by
+    @resources = @resources.paginate page, per_page
+    @resources = form_nested_response if includables.any?
+    @resources
+  end
+
+  def includables
+    params[:include] ||= []
+    @includables ||= (resource_class.includable_resources & params[:include].split(',')).map { |x| x.to_sym }
+  end
+
+  def form_nested_response
+    resources = []
+    @resources.each do |resource|
+      includables.each do |nested_resource_name|
+        resource[nested_resource_name] = resource.send(nested_resource_name.to_s)
+      end
+      resources << resource
+    end
+    resources 
   end
 
   def total_resources_count

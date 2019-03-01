@@ -29,6 +29,15 @@ resource "Resources", focus: :true do
     end
   end
 
+  get "/api/v1/resources?include=users,abc" do
+    example "GET items include users" do
+      5.times{  item = create(:resource) }
+      Resource.offset(2).each{|rec| 3.times{ create(:user, resource: rec)} }
+      do_request
+      expect(response_status).to eq(200)
+    end
+  end
+
   post "/api/v1/resources" do
     parameter :resource, "resource attributes object, to be created"
     attrs = { name: "new items" }

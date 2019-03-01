@@ -12,10 +12,18 @@ Sequel.migration do
       
       primary_key [:filename]
     end
+    
+    create_table(:users) do
+      primary_key :id, :type=>"int(11)"
+      column :username, "varchar(255)"
+      column :email, "varchar(255)"
+      column :resource_id, "int(11)"
+    end
   end
 end
-Sequel.migration do
-  change do
-    self << "INSERT INTO `schema_migrations` (`filename`) VALUES ('20180702053119_create_resources.rb')"
-  end
-end
+              Sequel.migration do
+                change do
+                  self << "INSERT INTO `schema_migrations` (`filename`) VALUES ('20180702053119_create_resources.rb')"
+self << "INSERT INTO `schema_migrations` (`filename`) VALUES ('20190228092853_create_users.rb')"
+                end
+              end
