@@ -20,6 +20,19 @@ class Sequel::Model
   def save! *args
     save *args
   end
+
+  def self.includables *resources
+    resources = resources.flatten.compact.uniq
+    @includable_resources = (self.associations & resources).flatten.map(&:to_s)
+  end
+
+  def self.includable_resources
+    @includable_resources ||= []
+  end
+
+  def self.includes(association)
+    self.eager(association)
+  end
 end
 
 
